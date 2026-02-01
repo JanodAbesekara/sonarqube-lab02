@@ -1,59 +1,21 @@
-package main.java.com.example;
+package com.example;
 
 public class Calculator {
 
     public int calculate(int a, int b, String op) {
-        switch (op.toLowerCase()) {
-            case "add":
-                return add(a, b);
-
-            case "sub":
-                return subtract(a, b);
-
-            case "mul":
-                return multiply(a, b);
-
-            case "div":
-                return divide(a, b);
-
-            case "mod":
-                return modulo(a, b);
-
-            case "pow":
-                return power(a, b);
-
-            default:
-                throw new IllegalArgumentException("Invalid operation: " + op);
-        }
+        return switch (op) {
+            case "add", "add-again" -> a + b;
+            case "sub", "sub-again" -> a - b;
+            case "mul" -> a * b;
+            case "div" -> b != 0 ? a / b : 0;
+            case "mod" -> a % b;
+            case "pow" -> (int) Math.pow(a, b);
+            default -> 0;
+        };
     }
-    
-    private int add(int a, int b) {
+
+    //  remove duplicate methods
+    public int add(int a, int b) {
         return a + b;
-    }
-
-    private int subtract(int a, int b) {
-        return a - b;
-    }
-
-    private int multiply(int a, int b) {
-        return a * b;
-    }
-
-    private int divide(int a, int b) {
-        if (b == 0) {
-            throw new ArithmeticException("Division by zero is not allowed");
-        }
-        return a / b;
-    }
-
-    private int modulo(int a, int b) {
-        if (b == 0) {
-            throw new ArithmeticException("Modulo by zero is not allowed");
-        }
-        return a % b;
-    }
-
-    private int power(int a, int b) {
-        return (int) Math.pow(a, b);
     }
 }
